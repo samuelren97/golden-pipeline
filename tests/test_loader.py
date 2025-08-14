@@ -1,6 +1,6 @@
 import pytest
 
-from .. import loader
+from goldenpipeline import loader
 
 test_case_valid_config = """
 steps:
