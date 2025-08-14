@@ -5,4 +5,5 @@
     <option name="pathToExecutable" value="C:\Users\samue\AppData\Local\Programs\Python\Python312\Scripts\black.exe" />
     <option name="sdkName" value="Python 3.12 (golden-pipeline)" />
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (goldenpipeline)" project-jdk-type="Python SDK" />
 </project>

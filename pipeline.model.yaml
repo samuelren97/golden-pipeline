@@ -1,0 +1,8 @@
+steps:
+  - checkout:
+      repo: ./src
+
+  - transform:
+      file: ./config.json
+      replace:
+        foo: bar
