@@ -4,8 +4,8 @@ from goldenpipeline.registry import register_step, STEP_REGISTRY
 
 
 def test_add_step_to_registry_one_registry():
-    @register_step("checkout")
-    def checkout_step():
+    @register_step("chicken")
+    def chicken_step():
         pass
 
     try:
@@ -15,22 +15,22 @@ def test_add_step_to_registry_one_registry():
 
 
 def test_check_name_in_registry():
-    @register_step("checkout")
-    def checkout_step():
+    @register_step("chicken")
+    def chicken_step():
         pass
 
     try:
-        _ = STEP_REGISTRY["checkout"]
+        _ = STEP_REGISTRY["chicken"]
     finally:
         STEP_REGISTRY.clear()
 
 
 def test_duplicate_step_name_key_error():
     with pytest.raises(ValueError):
-        @register_step("checkout")
-        def checkout_step1():
+        @register_step("chicken")
+        def chicken_step_1():
             pass
 
-        @register_step("checkout")
-        def checkout_step_2():
+        @register_step("chicken")
+        def chicken_step_2():
             pass

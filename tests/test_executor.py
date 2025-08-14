@@ -9,8 +9,8 @@ from tests.pipeline_content_test_cases import pipeline_content_unknown_step, pip
 
 
 def test_valid_steps(tmp_path):
-    @register_step("checkout")
-    def checkout_step(params):
+    @register_step("chicken")
+    def chicken_step(params):
         pass
 
     pipeline_path = tmp_path / "pipeline.yaml"
