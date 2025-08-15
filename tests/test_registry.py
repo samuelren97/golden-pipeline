@@ -1,6 +1,6 @@
 import pytest
 
-from goldenpipeline.registry import register_step, STEP_REGISTRY
+from goldenpipeline.registry import STEP_REGISTRY, register_step
 
 
 def test_add_step_to_registry_one_registry():

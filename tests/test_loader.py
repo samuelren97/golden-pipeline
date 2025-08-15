@@ -1,11 +1,9 @@
 import pytest
 
 from goldenpipeline import loader
-from tests.pipeline_content_test_cases import (
-    pipeline_content_valid_config,
-    pipeline_content_steps_missing,
-    pipeline_content_steps_not_list,
-)
+from tests.pipeline_content_test_cases import (pipeline_content_steps_missing,
+                                               pipeline_content_steps_not_list,
+                                               pipeline_content_valid_config)
 
 
 def test_valid_config(tmp_path):
