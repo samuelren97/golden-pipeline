@@ -3,3 +3,4 @@ flake8
 PyYAML
 pytest
 types-PyYAML
+isort
