@@ -8,27 +8,25 @@ from goldenpipeline.steps.utils import validate_step_required_params
 
 def validate_parameter_values(params: dict) -> None:
     for key in list(params.keys()):
-        if type(params[key]) != str:
+        if not isinstance(params[key], str):
             raise InvalidConfigType("checkout parameter values must be strings, type is: "
                                     f"{type(params[key])}")
 
 
 def run_checkout(params: dict) -> None:
-    repo_path = params["repo_path"]
+    repo = params["repo"]
     ref = params["ref"]
 
-    if not os.path.exists(repo_path):
-        raise FileNotFoundError(f"Repo path does not exist: {repo_path}")
+    target = os.path.join("tmp", "src")
 
-    subprocess.run(["git", "-C", repo_path, "fetch", "origin"], check=False)
-    subprocess.run(["git", "-C", repo_path, "checkout", ref], check=True)
-    subprocess.run(["git", "-C", repo_path, "pull"], check=False)
+    subprocess.run(["git", "-C", "tmp", "clone", repo, "src"], check=True)
+    subprocess.run(["git", "-C", target, "checkout", ref], check=True)
 
 
 @register_step("checkout")
-def checkout_step(params: dict):
+def checkout_step(params: dict) -> None:
     required_params = [
-        "repo_path",
+        "repo",
         "ref",
     ]
 
