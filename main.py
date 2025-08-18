@@ -18,9 +18,14 @@ if __name__ == "__main__":
         pipeline = loader.load_pipeline("pipeline.yaml")
         execute_pipeline(pipeline["steps"])
     finally:
+        pass
+
+
         def on_rm_error(func, path, exc_info):
             os.chmod(path, stat.S_IWRITE)
             func(path)
 
 
-        shutil.rmtree("tmp", onexc=on_rm_error)
+        delete_tmp = True
+        if delete_tmp:
+            shutil.rmtree("tmp", onexc=on_rm_error)

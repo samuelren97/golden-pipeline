@@ -1,4 +1,3 @@
-import os
 import subprocess
 from idlelib.config import InvalidConfigType
 
@@ -17,10 +16,8 @@ def run_checkout(params: dict) -> None:
     repo = params["repo"]
     ref = params["ref"]
 
-    target = os.path.join("tmp", "src")
-
-    subprocess.run(["git", "-C", "tmp", "clone", repo, "src"], check=True)
-    subprocess.run(["git", "-C", target, "checkout", ref], check=True)
+    subprocess.run(["git", "-C", "tmp", "clone", repo, "."], check=True)
+    subprocess.run(["git", "-C", "tmp", "checkout", ref], check=True)
 
 
 @register_step("checkout")
@@ -32,7 +29,7 @@ def checkout_step(params: dict) -> None:
 
     params_list = list(params.keys())
 
-    print("Validating pipeline checkout steps...")
+    print("Validating pipeline checkout parameters...")
     validate_step_required_params(params_list, required_params)
 
     print("Validating parameter values...")
