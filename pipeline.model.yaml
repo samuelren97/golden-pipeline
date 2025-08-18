@@ -1,6 +1,7 @@
 steps:
   - checkout:
-      repo: ./src
+      repo: "git@github.com:samuelren97/goldenpipeline"
+      ref: "main"
 
   - transform:
       file: ./config.json
