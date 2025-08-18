@@ -41,3 +41,4 @@ def transform_step(params: dict) -> None:
 
     print("Running transform")
     run_transform(params)
+    print("Transform done successfully")
