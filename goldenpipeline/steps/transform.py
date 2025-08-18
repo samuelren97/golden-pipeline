@@ -35,7 +35,10 @@ def transform_step(params: dict) -> None:
     print("Validating pipeline transform parameters...")
     validate_step_required_params(params_list, required_params)
 
+    print("Validating that the file exists...")
     if not os.path.exists(f"tmp/{params["file"]}"):
         raise FileNotFoundError(f"File {params["file"]} does not exist")
 
+    print("Running transform")
     run_transform(params)
+    print("Transform done successfully")
