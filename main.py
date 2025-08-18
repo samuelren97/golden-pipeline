@@ -18,9 +18,6 @@ if __name__ == "__main__":
         pipeline = loader.load_pipeline("pipeline.yaml")
         execute_pipeline(pipeline["steps"])
     finally:
-        pass
-
-
         def on_rm_error(func, path, exc_info):
             os.chmod(path, stat.S_IWRITE)
             func(path)
