@@ -8,8 +8,10 @@ from goldenpipeline.steps.utils import validate_step_required_params
 def validate_parameter_values(params: dict) -> None:
     for key in list(params.keys()):
         if not isinstance(params[key], str):
-            raise InvalidConfigType("checkout parameter values must be strings, type is: "
-                                    f"{type(params[key])}")
+            raise InvalidConfigType(
+                "checkout parameter values must be strings, type is: "
+                f"{type(params[key])}"
+            )
 
 
 def run_checkout(params: dict) -> None:

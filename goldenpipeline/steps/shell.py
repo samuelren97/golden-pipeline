@@ -14,7 +14,7 @@ def shell_step(params: dict) -> None:
 
     params_list = list(params.keys())
     n_params = params
-    if not "stop_on_error" in params_list:
+    if "stop_on_error" not in params_list:
         n_params["stop_on_error"] = True
 
     n_params_list = list(n_params.keys())
