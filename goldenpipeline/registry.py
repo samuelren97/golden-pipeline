@@ -7,8 +7,8 @@ STEP_REGISTRY: dict[str, Callable[..., Any]] = {}
 
 def register_step(name: str) -> Callable[[T], T]:
     """
-Decorator that registers a function in STEP_REGISTRY under the given name.
-"""
+    Decorator that registers a function in STEP_REGISTRY under the given name.
+    """
 
     def decorator(func: T) -> T:
         try:

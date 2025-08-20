@@ -1,3 +1,4 @@
+import argparse
 from idlelib.config import InvalidConfigType
 from typing import Any
 
@@ -17,9 +18,20 @@ def validate_pipeline_steps(steps: list[dict[str, Any]]) -> None:
             raise InvalidConfigType(f"invalid step: {key}")
 
 
-def execute_pipeline(steps: list[dict[str, Any]]) -> None:
+def execute_pipeline(
+    steps: list[dict[str, Any]],
+    args: argparse.Namespace,
+) -> None:
+    is_verbose = args.verbose
+    is_dry_run = args.dry_run
     validate_pipeline_steps(steps)
+
+    step_num = 1
     for step in steps:
         key = list(step.keys())[0]
+
+        print(f"\n[{step_num} - {key}]")
+
         params = step[key]
-        STEP_REGISTRY[key](params)
+        STEP_REGISTRY[key](params, is_verbose, is_dry_run, args.tmp_dir)
+        step_num += 1

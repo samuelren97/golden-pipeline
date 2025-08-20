@@ -4,8 +4,8 @@ from goldenpipeline.registry import register_step
 from goldenpipeline.steps.utils import validate_step_required_params
 
 
-def run_transform(params: dict) -> None:
-    file = f"tmp/{params["file"]}"
+def run_transform(params: dict, tmp_dir: str) -> None:
+    file = f"{tmp_dir}/{params["file"]}"
     value_list: list[dict] = params["values"]
 
     content = ""
@@ -24,7 +24,12 @@ def run_transform(params: dict) -> None:
 
 
 @register_step("transform")
-def transform_step(params: dict) -> None:
+def transform_step(
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
+    tmp_dir: str,
+) -> None:
     required_params = [
         "file",
         "values",
@@ -32,13 +37,17 @@ def transform_step(params: dict) -> None:
 
     params_list = list(params.keys())
 
-    print("Validating pipeline transform parameters...")
+    if is_verbose:
+        print("Validating pipeline transform parameters...")
     validate_step_required_params(params_list, required_params)
 
-    print("Validating that the file exists...")
-    if not os.path.exists(f"tmp/{params["file"]}"):
-        raise FileNotFoundError(f"File {params["file"]} does not exist")
+    if not is_dry_run:
+        if is_verbose:
+            print("Validating that the file exists...")
+        if not os.path.exists(f"{tmp_dir}/{params["file"]}"):
+            raise FileNotFoundError(f"File {params["file"]} does not exist")
 
-    print("Running transform")
-    run_transform(params)
+    print("Running transform...")
+    if not is_dry_run:
+        run_transform(params, tmp_dir)
     print("Transform done successfully")

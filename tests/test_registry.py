@@ -27,6 +27,7 @@ def test_check_name_in_registry():
 
 def test_duplicate_step_name_key_error():
     with pytest.raises(ValueError):
+
         @register_step("chicken")
         def chicken_step_1():
             pass

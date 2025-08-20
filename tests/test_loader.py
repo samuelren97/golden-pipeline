@@ -1,24 +1,18 @@
 import pytest
 
 from goldenpipeline import loader
-from tests.pipeline_content_test_cases import (pipeline_content_steps_missing,
-                                               pipeline_content_steps_not_list,
-                                               pipeline_content_valid_config)
+from tests.pipeline_content_test_cases import (
+    pipeline_content_steps_missing,
+    pipeline_content_steps_not_list,
+    pipeline_content_valid_config,
+)
 
 
 def test_valid_config(tmp_path):
     file_path = tmp_path / "pipeline.yaml"
     file_path.write_text(pipeline_content_valid_config)
 
-    expected = {
-        "steps": [
-            {
-                "checkout": {
-                    "repo": "./src"
-                }
-            }
-        ]
-    }
+    expected = {"steps": [{"checkout": {"repo": "./src"}}]}
 
     config = loader.load_pipeline(str(file_path))
     assert config == expected

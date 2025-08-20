@@ -14,16 +14,21 @@ def validate_parameter_values(params: dict) -> None:
             )
 
 
-def run_checkout(params: dict) -> None:
+def run_checkout(params: dict, tmp_dir: str) -> None:
     repo = params["repo"]
     ref = params["ref"]
 
-    subprocess.run(["git", "-C", "tmp", "clone", repo, "."], check=True)
-    subprocess.run(["git", "-C", "tmp", "checkout", ref], check=True)
+    subprocess.run(["git", "-C", tmp_dir, "clone", repo, "."], check=True)
+    subprocess.run(["git", "-C", tmp_dir, "checkout", ref], check=True)
 
 
 @register_step("checkout")
-def checkout_step(params: dict) -> None:
+def checkout_step(
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
+    tmp_dir: str,
+) -> None:
     required_params = [
         "repo",
         "ref",
@@ -31,12 +36,16 @@ def checkout_step(params: dict) -> None:
 
     params_list = list(params.keys())
 
-    print("Validating pipeline checkout parameters...")
+    if is_verbose:
+        print("Validating pipeline checkout parameters...")
     validate_step_required_params(params_list, required_params)
 
-    print("Validating parameter values...")
+    if is_verbose:
+        print("Validating parameter values...")
     validate_parameter_values(params)
 
     print("Running checkout...")
-    run_checkout(params)
+
+    if not is_dry_run:
+        run_checkout(params, tmp_dir)
     print("Checkout done successfully")
