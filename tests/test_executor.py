@@ -5,8 +5,10 @@ import pytest
 from goldenpipeline.executor import execute_pipeline
 from goldenpipeline.loader import load_pipeline
 from goldenpipeline.registry import STEP_REGISTRY, register_step
-from tests.pipeline_content_test_cases import (pipeline_content_unknown_step,
-                                               pipeline_content_valid_config)
+from tests.pipeline_content_test_cases import (
+    pipeline_content_unknown_step,
+    pipeline_content_valid_config,
+)
 
 
 def test_valid_steps(tmp_path):
