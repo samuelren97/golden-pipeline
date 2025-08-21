@@ -5,8 +5,8 @@ import pkgutil
 import shutil
 import stat
 
-from goldenpipeline import loader
 from goldenpipeline import steps  # noqa: F401
+from goldenpipeline import loader
 from goldenpipeline.executor import execute_pipeline
 
 for _, module_name, _ in pkgutil.iter_modules(steps.__path__):

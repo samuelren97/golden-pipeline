@@ -26,10 +26,10 @@ def run_transform(params: dict, tmp_dir: str) -> None:
 
 @register_step("transform")
 def transform_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
-        tmp_dir: str,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
+    tmp_dir: str,
 ) -> None:
     required_params = [
         "file",

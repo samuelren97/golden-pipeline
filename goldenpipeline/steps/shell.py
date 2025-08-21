@@ -1,17 +1,17 @@
 import subprocess
 from idlelib.config import InvalidConfigType
 
-from goldenpipeline.logger import info, debug
+from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
 from goldenpipeline.steps.utils import validate_step_required_params
 
 
 @register_step("shell")
 def shell_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
-        tmp_dir: str,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
+    tmp_dir: str,
 ) -> None:
     required_params = [
         "command",
