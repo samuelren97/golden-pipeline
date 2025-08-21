@@ -14,11 +14,19 @@ def run_copy(params: dict, tmp_dir: str) -> None:
 
 @register_step("copy")
 def copy_step(
-    params: dict,
-    is_verbose: bool,
-    is_dry_run: bool,
-    tmp_dir: str,
+        params: dict,
+        is_verbose: bool,
+        is_dry_run: bool,
+        tmp_dir: str,
 ) -> None:
+    """
+    Step that copies a file
+    :param params: Parameter dictionary
+    :param is_verbose: Enables verbose logs
+    :param is_dry_run: Enables dry run
+    :param tmp_dir: Specifies the tmp working directory
+    :return:
+    """
     required_params = [
         "src",
         "dest",
