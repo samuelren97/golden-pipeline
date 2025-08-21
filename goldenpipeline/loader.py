@@ -4,6 +4,8 @@ from typing import Optional
 
 from yaml import safe_load
 
+from goldenpipeline.logger import debug
+
 
 def load_pipeline(
     args: argparse.Namespace,
@@ -23,7 +25,7 @@ def load_pipeline(
     with open(config_path, "rb") as conf_file:
         data = safe_load(conf_file)
         if args.verbose:
-            print(f"Pipeline config content:\n{data}")
+            debug(f"Pipeline config content:\n{data}")
 
     try:
         steps = data["steps"]
