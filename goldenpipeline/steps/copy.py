@@ -14,10 +14,10 @@ def run_copy(params: dict, tmp_dir: str) -> None:
 
 @register_step("copy")
 def copy_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
-        tmp_dir: str,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
+    tmp_dir: str,
 ) -> None:
     """
     Step that copies a file

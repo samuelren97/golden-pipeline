@@ -25,10 +25,10 @@ def run_checkout(params: dict, tmp_dir: str) -> None:
 
 @register_step("checkout")
 def checkout_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
-        tmp_dir: str,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
+    tmp_dir: str,
 ) -> None:
     """
     Step that checkout a local or remote git repository
