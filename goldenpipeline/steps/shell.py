@@ -13,6 +13,14 @@ def shell_step(
     is_dry_run: bool,
     tmp_dir: str,
 ) -> None:
+    """
+    Shell step runs a command in the default OS shell.
+    :param params: Parameter dictionary
+    :param is_verbose: Enables verbose logs
+    :param is_dry_run: Enables dry run
+    :param tmp_dir: Specifies the tmp working directory
+    :return:
+    """
     required_params = [
         "command",
         "stop_on_error",

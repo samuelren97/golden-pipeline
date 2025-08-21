@@ -30,6 +30,14 @@ def checkout_step(
     is_dry_run: bool,
     tmp_dir: str,
 ) -> None:
+    """
+    Step that checkout a local or remote git repository
+    :param params: Parameter dictionary
+    :param is_verbose: Enables verbose logs
+    :param is_dry_run: Enables dry run
+    :param tmp_dir: Specifies the tmp working directory
+    :return:
+    """
     required_params = [
         "repo",
         "ref",

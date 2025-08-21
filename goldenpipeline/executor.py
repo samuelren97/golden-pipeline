@@ -22,6 +22,12 @@ def execute_pipeline(
     steps: list[dict[str, Any]],
     args: argparse.Namespace,
 ) -> None:
+    """
+    Executes the parsed pipeline configuration
+    :param steps: list[dict[str, Any]] - List of step dictionaries
+    :param args: argparse.Namespace - CLI parsed args
+    :return:
+    """
     is_verbose = args.verbose
     is_dry_run = args.dry_run
     validate_pipeline_steps(steps)
