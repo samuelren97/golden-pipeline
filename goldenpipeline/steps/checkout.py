@@ -1,6 +1,7 @@
 import subprocess
 from idlelib.config import InvalidConfigType
 
+from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
 from goldenpipeline.steps.utils import validate_step_required_params
 
@@ -24,10 +25,10 @@ def run_checkout(params: dict, tmp_dir: str) -> None:
 
 @register_step("checkout")
 def checkout_step(
-    params: dict,
-    is_verbose: bool,
-    is_dry_run: bool,
-    tmp_dir: str,
+        params: dict,
+        is_verbose: bool,
+        is_dry_run: bool,
+        tmp_dir: str,
 ) -> None:
     required_params = [
         "repo",
@@ -37,15 +38,15 @@ def checkout_step(
     params_list = list(params.keys())
 
     if is_verbose:
-        print("Validating pipeline checkout parameters...")
+        debug("Validating pipeline checkout parameters...")
     validate_step_required_params(params_list, required_params)
 
     if is_verbose:
-        print("Validating parameter values...")
+        debug("Validating parameter values...")
     validate_parameter_values(params)
 
-    print("Running checkout...")
+    info("Running checkout...")
 
     if not is_dry_run:
         run_checkout(params, tmp_dir)
-    print("Checkout done successfully")
+    info("Checkout done successfully")
