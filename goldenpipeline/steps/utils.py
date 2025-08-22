@@ -1,4 +1,4 @@
-from idlelib.config import InvalidConfigType
+from goldenpipeline.InvalidConfigError import InvalidConfigError
 
 
 def validate_step_required_params(
@@ -10,4 +10,4 @@ def validate_step_required_params(
             f"Specified: {params}\n"
             f"Required: {required_params}"
         )
-        raise InvalidConfigType(message)
+        raise InvalidConfigError(message)

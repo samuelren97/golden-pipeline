@@ -15,10 +15,9 @@ def run_transform(params: dict, tmp_dir: str) -> None:
 
     for val in value_list:
         key = list(val.keys())[-1]
-        to_replace = "${" + key + "}"
         new_val = val[key]
 
-        content = content.replace(to_replace, new_val)
+        content = content.replace(key, new_val)
 
     with open(file, "w") as f:
         f.write(content)
@@ -32,7 +31,7 @@ def transform_step(
     tmp_dir: str,
 ) -> None:
     """
-    Transforms text in a file. The key must be wrapped like so: ${key}
+    Transforms text in a file with a given search pattern.
     :param params: Parameter dictionary
     :param is_verbose: Enables verbose logs
     :param is_dry_run: Enables dry run

@@ -1,6 +1,6 @@
 import subprocess
-from idlelib.config import InvalidConfigType
 
+from goldenpipeline.InvalidConfigError import InvalidConfigError
 from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
 from goldenpipeline.steps.utils import validate_step_required_params
@@ -9,7 +9,7 @@ from goldenpipeline.steps.utils import validate_step_required_params
 def validate_parameter_values(params: dict) -> None:
     for key in list(params.keys()):
         if not isinstance(params[key], str):
-            raise InvalidConfigType(
+            raise InvalidConfigError(
                 "checkout parameter values must be strings, type is: "
                 f"{type(params[key])}"
             )
