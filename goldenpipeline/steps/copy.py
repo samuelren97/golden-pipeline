@@ -14,9 +14,9 @@ def run_copy(params: dict) -> None:
 
 @register_step("copy")
 def copy_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
 ) -> None:
     """
     Step that copies a file

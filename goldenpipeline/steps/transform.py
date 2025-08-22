@@ -25,9 +25,9 @@ def run_transform(params: dict) -> None:
 
 @register_step("transform")
 def transform_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
 ) -> None:
     """
     Transforms text in a file with a given search pattern.
