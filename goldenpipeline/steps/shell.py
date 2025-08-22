@@ -1,6 +1,6 @@
 import subprocess
-from idlelib.config import InvalidConfigType
 
+from goldenpipeline.InvalidConfigError import InvalidConfigError
 from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
 from goldenpipeline.steps.utils import validate_step_required_params
@@ -40,13 +40,13 @@ def shell_step(
     if is_verbose:
         debug("Validating command...")
     if not isinstance(n_params["command"], str):
-        raise InvalidConfigType("Command must be of type string")
+        raise InvalidConfigError("Command must be of type string")
     command = n_params["command"].split(" ")
 
     if is_verbose:
         debug("Validating stop_on_error parameter")
     if not isinstance(n_params["stop_on_error"], bool):
-        raise InvalidConfigType("stop_on_error must be of type bool")
+        raise InvalidConfigError("stop_on_error must be of type bool")
 
     info("Running command...")
     if not is_dry_run:

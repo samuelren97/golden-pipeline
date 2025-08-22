@@ -2,6 +2,7 @@ pipeline_content_valid_config = """
 steps:
     - checkout:
         repo: ./src
+        ref: main
 """
 
 pipeline_content_steps_missing = """
