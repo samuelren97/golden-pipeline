@@ -1,9 +1,6 @@
 import argparse
 import importlib
-import os
 import pkgutil
-import shutil
-import stat
 
 from goldenpipeline import loader, steps
 from goldenpipeline.executor import execute_pipeline
@@ -32,28 +29,10 @@ def init_args() -> argparse.Namespace:
         help="Simulate the pipeline without actually running the steps",
         action="store_true",
     )
-    parser.add_argument(
-        "--tmp-dir",
-        help="Specify the temporary directory to run the pipeline",
-        default="tmp",
-    )
     return parser.parse_args()
-
-
-def on_rm_error(func, path, _):
-    os.chmod(path, stat.S_IWRITE)
-    func(path)
 
 
 if __name__ == "__main__":
     args = init_args()
-
-    if not os.path.exists(args.tmp_dir):
-        os.mkdir(args.tmp_dir, 0o777)
-    try:
-        pipeline = loader.load_pipeline(args)
-        execute_pipeline(pipeline["steps"], args=args)
-    finally:
-        delete_tmp = True
-        if delete_tmp:
-            shutil.rmtree(args.tmp_dir, onexc=on_rm_error)
+    pipeline = loader.load_pipeline(args)
+    execute_pipeline(pipeline["steps"], args=args)

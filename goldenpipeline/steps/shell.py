@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 from goldenpipeline.InvalidConfigError import InvalidConfigError
@@ -8,28 +9,30 @@ from goldenpipeline.steps.utils import validate_step_required_params
 
 @register_step("shell")
 def shell_step(
-    params: dict,
-    is_verbose: bool,
-    is_dry_run: bool,
-    tmp_dir: str,
+        params: dict,
+        is_verbose: bool,
+        is_dry_run: bool,
 ) -> None:
     """
     Shell step runs a command in the default OS shell.
     :param params: Parameter dictionary
     :param is_verbose: Enables verbose logs
     :param is_dry_run: Enables dry run
-    :param tmp_dir: Specifies the tmp working directory
     :return:
     """
     required_params = [
         "command",
         "stop_on_error",
+        "cwd",
     ]
 
     params_list = list(params.keys())
     n_params = params
     if "stop_on_error" not in params_list:
         n_params["stop_on_error"] = True
+
+    if "cwd" not in params_list:
+        n_params["cwd"] = os.getcwd()
 
     n_params_list = list(n_params.keys())
 
@@ -54,6 +57,6 @@ def shell_step(
             command,
             check=n_params["stop_on_error"],
             shell=True,
-            cwd=tmp_dir,
+            cwd=n_params["cwd"],
         )
     info("Command ran successfully")
