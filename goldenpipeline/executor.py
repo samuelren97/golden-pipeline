@@ -39,5 +39,5 @@ def execute_pipeline(
         print(f"\n[{step_num} - {key}]")
 
         params = step[key]
-        STEP_REGISTRY[key](params, is_verbose, is_dry_run, args.tmp_dir)
+        STEP_REGISTRY[key](params, is_verbose, is_dry_run)
         step_num += 1

@@ -15,12 +15,11 @@ def validate_parameter_values(params: dict) -> None:
             )
 
 
-def run_checkout(params: dict, tmp_dir: str) -> None:
+def run_checkout(params: dict) -> None:
     repo = params["repo"]
     ref = params["ref"]
 
-    subprocess.run(["git", "-C", tmp_dir, "clone", repo, "."], check=True)
-    subprocess.run(["git", "-C", tmp_dir, "checkout", ref], check=True)
+    subprocess.run(["git", "clone", "--branch", ref, repo], check=True)
 
 
 @register_step("checkout")
@@ -28,14 +27,12 @@ def checkout_step(
     params: dict,
     is_verbose: bool,
     is_dry_run: bool,
-    tmp_dir: str,
 ) -> None:
     """
     Step that checkout a local or remote git repository
     :param params: Parameter dictionary
     :param is_verbose: Enables verbose logs
     :param is_dry_run: Enables dry run
-    :param tmp_dir: Specifies the tmp working directory
     :return:
     """
     required_params = [
@@ -56,5 +53,5 @@ def checkout_step(
     info("Running checkout...")
 
     if not is_dry_run:
-        run_checkout(params, tmp_dir)
+        run_checkout(params)
     info("Checkout done successfully")
