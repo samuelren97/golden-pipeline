@@ -4,15 +4,13 @@ import pkgutil
 import pytest
 
 from goldenpipeline import steps
-from goldenpipeline.InvalidConfigError import InvalidConfigError
 from goldenpipeline.executor import execute_pipeline
+from goldenpipeline.InvalidConfigError import InvalidConfigError
 from goldenpipeline.loader import load_pipeline
 from goldenpipeline.registry import STEP_REGISTRY
 from tests.args import init_args
-from tests.pipeline_content_test_cases import (
-    pipeline_content_unknown_step,
-    pipeline_content_valid_config,
-)
+from tests.pipeline_content_test_cases import (pipeline_content_unknown_step,
+                                               pipeline_content_valid_config)
 
 for _, module_name, _ in pkgutil.iter_modules(steps.__path__):
     importlib.import_module(f"goldenpipeline.steps.{module_name}")

@@ -19,8 +19,8 @@ def validate_pipeline_steps(steps: list[dict[str, Any]]) -> None:
 
 
 def execute_pipeline(
-        steps: list[dict[str, Any]],
-        args: argparse.Namespace,
+    steps: list[dict[str, Any]],
+    args: argparse.Namespace,
 ) -> None:
     """
     Executes the parsed pipeline configuration

@@ -5,8 +5,7 @@ import pkgutil
 import shutil
 import stat
 
-from goldenpipeline import loader
-from goldenpipeline import steps
+from goldenpipeline import loader, steps
 from goldenpipeline.executor import execute_pipeline
 
 for _, module_name, _ in pkgutil.iter_modules(steps.__path__):
