@@ -15,10 +15,9 @@ def run_transform(params: dict, tmp_dir: str) -> None:
 
     for val in value_list:
         key = list(val.keys())[-1]
-        to_replace = "${" + key + "}"
         new_val = val[key]
 
-        content = content.replace(to_replace, new_val)
+        content = content.replace(key, new_val)
 
     with open(file, "w") as f:
         f.write(content)
