@@ -31,7 +31,7 @@ def transform_step(
     tmp_dir: str,
 ) -> None:
     """
-    Transforms text in a file. The key must be wrapped like so: ${key}
+    Transforms text in a file with a given search pattern.
     :param params: Parameter dictionary
     :param is_verbose: Enables verbose logs
     :param is_dry_run: Enables dry run
