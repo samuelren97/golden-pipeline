@@ -9,9 +9,9 @@ from goldenpipeline.steps.utils import validate_step_required_params
 
 @register_step("shell")
 def shell_step(
-    params: dict,
-    is_verbose: bool,
-    is_dry_run: bool,
+        params: dict,
+        is_verbose: bool,
+        is_dry_run: bool,
 ) -> None:
     """
     Shell step runs a command in the default OS shell.
@@ -56,7 +56,7 @@ def shell_step(
         subprocess.run(
             command,
             check=n_params["stop_on_error"],
-            shell=False,
+            shell=True if os.name == "nt" else False,
             cwd=n_params["cwd"],
         )
     info("Command ran successfully")
