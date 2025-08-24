@@ -56,7 +56,7 @@ def shell_step(
         subprocess.run(
             command,
             check=n_params["stop_on_error"],
-            shell=False,
+            shell=os.name == "nt",
             cwd=n_params["cwd"],
         )
     info("Command ran successfully")

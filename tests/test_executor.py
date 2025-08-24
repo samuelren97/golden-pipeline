@@ -35,6 +35,7 @@ def test_valid_steps(tmp_path):
 def test_unknown_step_invalid_config_type(tmp_path):
     args = init_args()
     pipeline_path = tmp_path / "pipeline.yaml"
+    args.config = str(pipeline_path)
     pipeline_path.write_text(pipeline_content_unknown_step)
     pipeline = load_pipeline(args)
 
