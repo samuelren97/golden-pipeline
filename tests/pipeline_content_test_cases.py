@@ -28,5 +28,25 @@ steps:
 
 vars:
   name: "Sam"
-  other: "Other"
+"""
+
+pipeline_content_vars_multiple_occurrences = """
+steps:
+  - shell:
+      command: "echo Hello ${name}!"
+  - shell:
+      command: "echo Bye ${name}!"
+
+vars:
+  name: "Sam"
+"""
+
+pipeline_content_vars_multiple_vars = """
+steps:
+  - shell:
+      command: "echo Hello ${name} ${lastname}!"
+
+vars:
+  name: "Sam"
+  lastname: "Hunta"
 """
