@@ -8,7 +8,7 @@ from goldenpipeline.logger import debug
 
 
 def load_pipeline(
-        args: argparse.Namespace,
+    args: argparse.Namespace,
 ) -> Optional[dict]:
     """
     Used to load the config file as a dictionary
@@ -29,7 +29,10 @@ def load_pipeline(
         try:
             v: dict = data["vars"]
             for key in v.keys():
-                pipeline_content = pipeline_content.replace("${" + key + "}", v[key])
+                pipeline_content = pipeline_content.replace(
+                    "${" + key + "}",
+                    v[key],
+                )
 
             data = safe_load(pipeline_content)
         except KeyError:
