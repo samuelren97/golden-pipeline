@@ -20,3 +20,13 @@ steps:
     - oh-yeah:
         parameter: "ok?"
 """
+
+pipeline_content_vars = """
+steps:
+  - shell:
+      command: "echo Hello ${name}!"
+
+vars:
+  name: "Sam"
+  other: "Other"
+"""
