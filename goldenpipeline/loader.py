@@ -8,7 +8,7 @@ from goldenpipeline.logger import debug
 
 
 def load_pipeline(
-    args: argparse.Namespace,
+        args: argparse.Namespace,
 ) -> Optional[dict]:
     """
     Used to load the config file as a dictionary
@@ -22,8 +22,19 @@ def load_pipeline(
     if not os.path.exists(config_path):
         raise FileNotFoundError
 
-    with open(config_path, "rb") as conf_file:
-        data = safe_load(conf_file)
+    with open(config_path, "r") as conf_file:
+        pipeline_content = conf_file.read()
+        data = safe_load(pipeline_content)
+
+        try:
+            v: dict = data["vars"]
+            for key in v.keys():
+                pipeline_content = pipeline_content.replace("${" + key + "}", v[key])
+
+            data = safe_load(pipeline_content)
+        except KeyError:
+            pass
+
         if args.verbose:
             debug(f"Pipeline config content:\n{data}")
 
