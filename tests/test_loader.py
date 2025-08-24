@@ -2,9 +2,12 @@ import pytest
 
 from goldenpipeline import loader
 from tests.args import init_args
-from tests.pipeline_content_test_cases import (pipeline_content_steps_missing,
-                                               pipeline_content_steps_not_list,
-                                               pipeline_content_valid_config)
+from tests.pipeline_content_test_cases import (
+    pipeline_content_steps_missing,
+    pipeline_content_steps_not_list,
+    pipeline_content_valid_config,
+    pipeline_content_vars,
+)
 
 
 def test_valid_config(tmp_path):
@@ -44,3 +47,19 @@ def test_steps_not_list_type_error(tmp_path):
 
     with pytest.raises(TypeError):
         loader.load_pipeline(args)
+
+
+def test_pipeline_vars_one_value(tmp_path):
+    args = init_args()
+    pipeline_path = tmp_path / "pipeline.yaml"
+    args.config = str(pipeline_path)
+    pipeline_path.write_text(pipeline_content_vars)
+
+    expected_command = "echo Hello Sam!"
+
+    pipeline = loader.load_pipeline(args)
+
+    assert pipeline["steps"][0]["shell"]["command"] == expected_command
+
+# TODO: Test multiple of same var
+# TODO: Test multiple vars
