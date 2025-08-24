@@ -35,7 +35,7 @@ def load_pipeline(
                 )
 
             data = safe_load(pipeline_content)
-        finally:
+        except KeyError:
             pass
 
         if args.verbose:
