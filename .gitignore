@@ -178,3 +178,5 @@ pyrightconfig.json
 pipeline.yaml
 pipeline.yml
 tmp
+
+vcs.xml
