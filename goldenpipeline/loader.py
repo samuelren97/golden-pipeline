@@ -8,7 +8,7 @@ from goldenpipeline.logger import debug
 
 
 def load_pipeline(
-        args: argparse.Namespace,
+    args: argparse.Namespace,
 ) -> Optional[dict]:
     """
     Used to load the config file as a dictionary

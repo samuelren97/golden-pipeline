@@ -180,3 +180,4 @@ pipeline.yml
 tmp
 
 vcs.xml
+.idea
