@@ -2,11 +2,11 @@ import pytest
 
 from goldenpipeline import loader
 from tests.args import init_args
-from tests.pipeline_content_test_cases import (pipeline_content_steps_missing,
-                                               pipeline_content_steps_not_list,
-                                               pipeline_content_valid_config,
-                                               pipeline_content_vars, pipeline_content_vars_multiple_occurrences,
-                                               pipeline_content_vars_multiple_vars)
+from tests.pipeline_content_test_cases import (
+    pipeline_content_steps_missing, pipeline_content_steps_not_list,
+    pipeline_content_valid_config, pipeline_content_vars,
+    pipeline_content_vars_multiple_occurrences,
+    pipeline_content_vars_multiple_vars)
 
 
 def test_valid_config(tmp_path):
@@ -74,6 +74,7 @@ def test_pipeline_vars_two_occurrences(tmp_path):
 
     assert pipeline["steps"][0]["shell"]["command"] == expected_command_one
     assert pipeline["steps"][1]["shell"]["command"] == expected_command_two
+
 
 def test_pipeline_vars_two_vars(tmp_path):
     args = init_args()
