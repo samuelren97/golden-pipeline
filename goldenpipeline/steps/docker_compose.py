@@ -28,19 +28,22 @@ def docker_compose_step(
     validate_step_required_params(params_list, required_params)
 
     info("Running docker compose...")
+    command = [
+        "docker",
+        "compose",
+        "-f",
+        n_params["file"],
+        "up",
+        "-d"
+    ]
+
+    if n_params["build"]:
+        command.append("--build")
+
+    if is_verbose:
+        debug(f"Running command {command}")
+
     if not is_dry_run:
-        command = [
-            "docker",
-            "compose",
-            "-f",
-            n_params["file"],
-            "up",
-            "-d"
-        ]
-
-        if n_params["build"]:
-            command.append("--build")
-
         subprocess.run(
             command,
             shell=os.name == "nt",
