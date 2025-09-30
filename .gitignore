@@ -181,3 +181,4 @@ tmp
 
 vcs.xml
 .idea
+docker-compose.yml
