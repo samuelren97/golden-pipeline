@@ -3,8 +3,6 @@
 A lightweight, modular and local CI/CD pipeline runner written in Python.  
 Pipelines are defined in **YAML** and executed step by step by a pluggable system of registered steps.
 
----
-
 ## Features
 - Define pipelines in simple YAML files.
 - Step-based execution system using a registry (`@register_step` decorator).
