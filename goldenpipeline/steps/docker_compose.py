@@ -9,13 +9,14 @@ from goldenpipeline.steps.utils import (print_sub_title,
 
 @register_step("docker-compose")
 def docker_compose_step(
-    params: dict,
-    is_verbose: bool,
-    is_dry_run: bool,
+        params: dict,
+        is_verbose: bool,
+        is_dry_run: bool,
 ) -> None:
     required_params = [
         "file",
         "build",
+        "cwd",
     ]
 
     params_list = list(params.keys())
@@ -23,6 +24,9 @@ def docker_compose_step(
 
     if "build" not in params_list:
         n_params["build"] = False
+
+    if "cwd" not in params_list:
+        n_params["cwd"] = "."
 
     if is_verbose:
         debug("Validating pipeline copy parameters...")
@@ -44,5 +48,5 @@ def docker_compose_step(
         subprocess.run(
             command,
             shell=os.name == "nt",
-            cwd=".",
+            cwd=n_params["cwd"],
         )
