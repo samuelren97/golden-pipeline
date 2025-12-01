@@ -3,7 +3,8 @@ import shutil
 
 from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
-from goldenpipeline.steps.utils import validate_step_required_params
+from goldenpipeline.steps.utils import (print_sub_title,
+                                        validate_step_required_params)
 
 
 def run_copy(params: dict) -> None:
@@ -35,6 +36,8 @@ def copy_step(
     if is_verbose:
         debug("Validating pipeline copy parameters...")
     validate_step_required_params(params_list, required_params)
+
+    print_sub_title(f"From => {params["src"]}, To => {params["dest"]}")
 
     if not is_dry_run:
         if is_verbose:

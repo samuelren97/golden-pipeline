@@ -3,7 +3,8 @@ import subprocess
 from goldenpipeline.InvalidConfigError import InvalidConfigError
 from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
-from goldenpipeline.steps.utils import validate_step_required_params
+from goldenpipeline.steps.utils import (print_sub_title,
+                                        validate_step_required_params)
 
 
 def validate_parameter_values(params: dict) -> None:
@@ -45,6 +46,8 @@ def checkout_step(
     if is_verbose:
         debug("Validating pipeline checkout parameters...")
     validate_step_required_params(params_list, required_params)
+
+    print_sub_title(f"Repo => {params["repo"]}")
 
     if is_verbose:
         debug("Validating parameter values...")
