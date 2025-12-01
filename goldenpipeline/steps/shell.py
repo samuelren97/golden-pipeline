@@ -4,14 +4,14 @@ import subprocess
 from goldenpipeline.InvalidConfigError import InvalidConfigError
 from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
-from goldenpipeline.steps.utils import validate_step_required_params
+from goldenpipeline.steps.utils import validate_step_required_params, print_sub_title
 
 
 @register_step("shell")
 def shell_step(
-    params: dict,
-    is_verbose: bool,
-    is_dry_run: bool,
+        params: dict,
+        is_verbose: bool,
+        is_dry_run: bool,
 ) -> None:
     """
     Shell step runs a command in the default OS shell.
@@ -39,6 +39,8 @@ def shell_step(
     if is_verbose:
         debug("Validating pipeline shell parameters...")
     validate_step_required_params(n_params_list, required_params)
+
+    print_sub_title(f"Command => {n_params["command"]}")
 
     if is_verbose:
         debug("Validating command...")

@@ -3,7 +3,7 @@ import shutil
 
 from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
-from goldenpipeline.steps.utils import validate_step_required_params
+from goldenpipeline.steps.utils import validate_step_required_params, print_sub_title
 
 
 def run_copy(params: dict) -> None:
@@ -14,9 +14,9 @@ def run_copy(params: dict) -> None:
 
 @register_step("copy")
 def copy_step(
-    params: dict,
-    is_verbose: bool,
-    is_dry_run: bool,
+        params: dict,
+        is_verbose: bool,
+        is_dry_run: bool,
 ) -> None:
     """
     Step that copies a file
@@ -35,6 +35,8 @@ def copy_step(
     if is_verbose:
         debug("Validating pipeline copy parameters...")
     validate_step_required_params(params_list, required_params)
+
+    print_sub_title(f"From => {params["src"]}, To => {params["dest"]}")
 
     if not is_dry_run:
         if is_verbose:
