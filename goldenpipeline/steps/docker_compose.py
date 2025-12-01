@@ -3,14 +3,15 @@ import subprocess
 
 from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
-from goldenpipeline.steps.utils import validate_step_required_params, print_sub_title
+from goldenpipeline.steps.utils import (print_sub_title,
+                                        validate_step_required_params)
 
 
 @register_step("docker-compose")
 def docker_compose_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
 ) -> None:
     required_params = [
         "file",
@@ -31,14 +32,7 @@ def docker_compose_step(
     print_sub_title(f"Compose => {file}")
 
     info("Running docker compose...")
-    command = [
-        "docker",
-        "compose",
-        "-f",
-        file,
-        "up",
-        "-d"
-    ]
+    command = ["docker", "compose", "-f", file, "up", "-d"]
 
     if n_params["build"]:
         command.append("--build")

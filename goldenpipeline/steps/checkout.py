@@ -3,7 +3,8 @@ import subprocess
 from goldenpipeline.InvalidConfigError import InvalidConfigError
 from goldenpipeline.logger import debug, info
 from goldenpipeline.registry import register_step
-from goldenpipeline.steps.utils import validate_step_required_params, print_sub_title
+from goldenpipeline.steps.utils import (print_sub_title,
+                                        validate_step_required_params)
 
 
 def validate_parameter_values(params: dict) -> None:
@@ -24,9 +25,9 @@ def run_checkout(params: dict) -> None:
 
 @register_step("checkout")
 def checkout_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
 ) -> None:
     """
     Step that checkout a local or remote git repository
