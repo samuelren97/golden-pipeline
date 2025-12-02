@@ -9,9 +9,9 @@ from goldenpipeline.steps.utils import (print_sub_title,
 
 @register_step("docker-compose")
 def docker_compose_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
 ) -> None:
     required_params = [
         "file",

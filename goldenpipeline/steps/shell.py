@@ -10,9 +10,9 @@ from goldenpipeline.steps.utils import (print_sub_title,
 
 @register_step("shell")
 def shell_step(
-        params: dict,
-        is_verbose: bool,
-        is_dry_run: bool,
+    params: dict,
+    is_verbose: bool,
+    is_dry_run: bool,
 ) -> None:
     """
     Shell step runs a command in the default OS shell.
