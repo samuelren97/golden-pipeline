@@ -28,6 +28,8 @@ def docker_compose_step(
     if "cwd" not in params_list:
         n_params["cwd"] = "."
 
+    params_list = list(n_params.keys())
+
     if is_verbose:
         debug("Validating pipeline copy parameters...")
     validate_step_required_params(params_list, required_params)
