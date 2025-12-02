@@ -10,9 +10,9 @@ from goldenpipeline.steps.utils import (print_sub_title,
 
 @register_step("shell")
 def shell_step(
-    params: dict,
-    is_verbose: bool,
-    is_dry_run: bool,
+        params: dict,
+        is_verbose: bool,
+        is_dry_run: bool,
 ) -> None:
     """
     Shell step runs a command in the default OS shell.
@@ -35,11 +35,11 @@ def shell_step(
     if "cwd" not in params_list:
         n_params["cwd"] = os.getcwd()
 
-    n_params_list = list(n_params.keys())
+    params_list = list(n_params.keys())
 
     if is_verbose:
         debug("Validating pipeline shell parameters...")
-    validate_step_required_params(n_params_list, required_params)
+    validate_step_required_params(params_list, required_params)
 
     print_sub_title(f"Command => {n_params["command"]}")
 

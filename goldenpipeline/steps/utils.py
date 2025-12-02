@@ -6,7 +6,8 @@ def print_sub_title(message: str) -> None:
 
 
 def validate_step_required_params(
-    params: list[str], required_params: list[str]
+        params: list[str],
+        required_params: list[str],
 ) -> None:
     if set(params) != set(required_params):
         message = (
