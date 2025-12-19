@@ -14,13 +14,16 @@ def docker_compose_step(
     is_dry_run: bool,
 ) -> None:
     required_params = [
-        "file",
+        "up" "file",
         "build",
         "cwd",
     ]
 
     params_list = list(params.keys())
     n_params = params
+
+    if "up" not in params_list:
+        n_params["up"] = True
 
     if "build" not in params_list:
         n_params["build"] = False
@@ -38,7 +41,11 @@ def docker_compose_step(
     print_sub_title(f"Compose => {file}")
 
     info("Running docker compose...")
-    command = ["docker", "compose", "-f", file, "up", "-d"]
+
+    if n_params["up"]:
+        command = ["docker", "compose", "-f", file, "up", "-d"]
+    else:
+        command = ["docker", "compose", "-f", file, "down", "--rmi", "local"]
 
     if n_params["build"]:
         command.append("--build")
