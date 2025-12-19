@@ -14,7 +14,8 @@ def docker_compose_step(
     is_dry_run: bool,
 ) -> None:
     required_params = [
-        "up" "file",
+        "up",
+        "file",
         "build",
         "cwd",
     ]
